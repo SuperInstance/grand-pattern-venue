@@ -1,0 +1,8 @@
+[package]
+name = "grand-pattern-venue"
+version = "0.1.0"
+edition = "2021"
+description = "Venues are agents — JEPA prompt-injects the abstraction of the moment. Venues develop vibes like personality."
+license = "MIT"
+
+[dependencies]
