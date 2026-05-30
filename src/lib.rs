@@ -1,7 +1,7 @@
-/// Grand Pattern Venue — venues ARE agents.
-///
-/// Each venue develops vibes like an agent develops personality.
-/// JEPA is for prompt injecting the abstraction of the moment.
+//! Grand Pattern Venue — venues ARE agents.
+//!
+//! Each venue develops vibes like an agent develops personality.
+//! JEPA is for prompt injecting the abstraction of the moment.
 
 use std::fmt;
 
@@ -168,11 +168,10 @@ impl Venue {
         // Track agent count.
         match event.kind {
             EventKind::AgentEntered => self.agent_count += 1,
-            EventKind::AgentLeft => {
-                if self.agent_count > 0 {
-                    self.agent_count -= 1;
-                }
+            EventKind::AgentLeft if self.agent_count > 0 => {
+                self.agent_count -= 1;
             }
+            EventKind::AgentLeft => {}
             _ => {}
         }
     }
@@ -211,7 +210,7 @@ impl Venue {
         };
 
         // Gradually shift voice_prompt toward the dominant trait.
-        if self.develop_ticks % 10 == 0 {
+        if self.develop_ticks.is_multiple_of(10) {
             self.voice_prompt = dominant_vibe.to_string();
         }
     }
